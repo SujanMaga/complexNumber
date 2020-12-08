@@ -8,18 +8,32 @@ class Complex:
         self.imaginary = i
 
     def __add__(self, other):
-        return f"{self.real + other.real} + {self.imaginary + other.imaginary}i"
+        real = self.real + other.real
+        imaginary = self.imaginary + other.imaginary
+        if imaginary < 1:
+            return f"{real} - {-imaginary}i" 
+        else:
+            return f"{real} + {imaginary}i"
+
+
 
     def __mul__(self, other):
         real = (self.real * other.real) - (self.imaginary * other.imaginary)
         imaginary = (self.imaginary * other.real) + (self.real * other.imaginary)
-        return f"{real} + {imaginary}i" 
+        if imaginary < 1:
+            return f"{real} - {-imaginary}i" 
+        else:
+            return f"{real} + {imaginary}i" 
 
     def __str__(self):
-        return f"{self.real} + {self.imaginary}i"
+        if self.imaginary < 1:
+            return f"{self.real} - {-self.imaginary}i"
+        else:
+            return f"{self.real} + {self.imaginary}i"
 
 # taking example
-c1 = Complex(2, 5)
-c2 = Complex(4, -3)
+c1 = Complex(2, 100)
+c2 = Complex(4,-10)
 print (c2 * c1 )
 print (c2 + c1 )
+print (c2)
